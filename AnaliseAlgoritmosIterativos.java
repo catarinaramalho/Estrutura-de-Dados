@@ -19,13 +19,13 @@ public class AnaliseAlgoritmosIterativos {
         char[] b = new char[] { '1', '2', '3', '4' };
         System.out.println(eh_palindromo(b));
 
-         /*
+        /*
          * Questão 03
          */
-        int[] a = new int[] {1,13,0,4,5};
-        System.out.println(Arrays.toString(two_sum(a,5)));
+        int[] a = new int[] { 1, 13, 0, 4, 5 };
+        System.out.println(Arrays.toString(two_sum(a, 5)));
 
-         /*
+        /*
          * Questão 04
          */
         int numero = 3;
@@ -36,19 +36,18 @@ public class AnaliseAlgoritmosIterativos {
         /*
          * Questão 05
          */
-        int[] lista = new int[] { 1, 13, 3, 4, 5, 1};
+        int[] lista = new int[] { 1, 13, 3, 4, 5, 1 };
         System.out.println(tem_repetido(lista));
-        lista = new int[] { 1, 13, 3, 4, 5};
+        lista = new int[] { 1, 13, 3, 4, 5 };
         System.out.println(tem_repetido(lista));
 
         /*
          * Questão 06
          */
-        lista = new int[] {4,5,6,1};
-        System.out.println(vetorCircular(lista,6));
-        lista = new int[] { 3,4,2};
-        System.out.println(vetorCircular(lista,8));
-
+        lista = new int[] { 4, 5, 6, 1 };
+        System.out.println(vetorCircular(lista, 6));
+        lista = new int[] { 3, 4, 2 };
+        System.out.println(vetorCircular(lista, 8));
 
     }
 
@@ -57,7 +56,33 @@ public class AnaliseAlgoritmosIterativos {
      * elementos
      * vizinhos. Se o tamanho da sequência for ímpar, troque os vizinhos e mantenha
      * o último elemento em sua posição.
-     * Ordem de Cresciemnto - f(n) = n
+     * ANÁLISE ANALÍTICA:
+     * ---- Primitivias ----
+     * c1 = int auxiliar = 0;
+     * c2 = int i = 0;
+     * c3 = i < v.length - 1;
+     * c4 = i = i + 2;
+     * c5 = auxiliar[i] = v[i]
+     * c6 = v[i] = v[i + 1];
+     * c7 = v[i + 1] = auxiliar;
+     * ---- Vezes de Execução ----
+     * f(n) = c1 * 1 + c2*1 + c3*(n/2 + 1) + c4*n/2 + n *(c5+c6+c7)
+     * f(n) = c4*n/2 + c3*n/2 + (c5+c6+c7) * n + c1 + c2 + c3
+     * f(n) = n/2(c1+c3) + (c5+c6+c7) * n + c1 + c2 + c3
+     * f(n) = n/2 + n + 1
+     * ANÁLISE ASSINTÓTICA
+     * f(n) = n/2 + n + 1
+     * g(n) = n
+     * c1 = 1
+     * c2 = 3
+     * n0 = 1
+     * 
+     * Formalmente,
+     * c1 * n <= n/2 + n + 1 <= c2 * n
+     * n <= n/2 + n + 1 <= 3n
+     * 
+     * Ordem de crescimento linear
+     * 
      */
     public static void troca_vizinhos(int[] v) {
         int auxiliar = 0;
@@ -75,7 +100,33 @@ public class AnaliseAlgoritmosIterativos {
      * palavra, e retorna um boolean. O método deve retornar true, caso a palavra
      * seja um palíndromo, e false, caso o contrário.
      * 
-     * Ordem de Cresciemnto - f(n) = n
+     * ANÁLISE ANALÍTICA:
+     * ---- Primitivias ----
+     * c1 = int i = 0;
+     * c2 = i < palavra.length / 2;
+     * c3 = i++;
+     * c4 = palavra[i] != palavra[palavra.length - i - 1]
+     * c5 = return false; === 0
+     * c6 = return true;
+     * 
+     * ---- Vezes de Execução ----
+     * f(n) = c1 * 1 + c2*((n/2)+1) + c3*(n/2) + c4*n/2 + c6
+     * f(n) = (c4+c3)*n/2 + c2*((n/2)+1) + c1 + c6
+     * f(n) = n/2 + n/2 + 2
+     * f(n) = n + 2
+     * 
+     * ANÁLISE ASSINTÓTICA
+     * f(n) = n + 2
+     * g(n) = n
+     * c1 = 1
+     * c2 = 3
+     * n0 = 1
+     * 
+     * Formalmente,
+     * c1 * n <= n + 2 <= c2 * n
+     * n <= n + 2 <= 3n
+     * 
+     * Ordem de crescimento linear
      */
 
     public static boolean eh_palindromo(char[] palavra) {
@@ -113,49 +164,55 @@ public class AnaliseAlgoritmosIterativos {
      * 
      */
 
-    public static boolean eh_primo(int n){
+    public static boolean eh_primo(int n) {
         for (int i = 2; i < n; i++) {
-            if (n%i==0){
+            if (n % i == 0) {
                 return false;
             }
-        }return true;
+        }
+        return true;
     }
 
     /*
-     * Questão 05- Escreva um método que receba um array de inteiros não ordenado e verifica existe algum elemento repetido presente no array. Retorne true ou false.
+     * Questão 05- Escreva um método que receba um array de inteiros não ordenado e
+     * verifica existe algum elemento repetido presente no array. Retorne true ou
+     * false.
      * Ordem de CRescimento = f(n) = n**2
      */
 
-    public static boolean tem_repetido(int[] v){
+    public static boolean tem_repetido(int[] v) {
         for (int i = 0; i < v.length; i++) {
             for (int j = i + 1; j < v.length; j++) {
                 if (v[i] == v[j]) {
                     return true;
                 }
             }
-        } return false;
+        }
+        return false;
     }
 
     /*
-     * Questão 06- Escreva um método que receba um array inteiros e um inteiro N e retorne uma String que representa a impressão do array de forma circular. Ou seja, quando o último elemento for visitado ele deve voltar para o primeiro e continuar até chegar a N elementos impressos.
+     * Questão 06- Escreva um método que receba um array inteiros e um inteiro N e
+     * retorne uma String que representa a impressão do array de forma circular. Ou
+     * seja, quando o último elemento for visitado ele deve voltar para o primeiro e
+     * continuar até chegar a N elementos impressos.
      * Ordem de crescimento = f(n) = n**2
-
+     * 
      */
-    public static String vetorCircular(int[] array, int quantidadeElementos){
-        String out =  "";
-        int quociente = quantidadeElementos/array.length;
-        int resto =  quantidadeElementos%array.length;
+    public static String vetorCircular(int[] array, int quantidadeElementos) {
+        String out = "";
+        int quociente = quantidadeElementos / array.length;
+        int resto = quantidadeElementos % array.length;
         for (int i = 0; i < quociente; i++) {
             for (int j = 0; j < array.length; j++) {
                 out += array[j] + " ";
             }
-            
+
         }
-        for (int a = 0; a < resto; a++){
+        for (int a = 0; a < resto; a++) {
             out += array[a] + " ";
         }
         return out.trim();
     }
-    
 
 }
