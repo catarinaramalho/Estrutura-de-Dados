@@ -58,13 +58,13 @@ public class AnaliseAlgoritmosIterativos {
      * o último elemento em sua posição.
      * ANÁLISE ANALÍTICA:
      * ---- Primitivias ----
-     * c1 = int auxiliar = 0;
-     * c2 = int i = 0;
-     * c3 = i < v.length - 1;
-     * c4 = i = i + 2;
+     * c1 = int auxiliar = 0
+     * c2 = int i = 0
+     * c3 = i < v.length - 1
+     * c4 = i = i + 2
      * c5 = auxiliar[i] = v[i]
-     * c6 = v[i] = v[i + 1];
-     * c7 = v[i + 1] = auxiliar;
+     * c6 = v[i] = v[i + 1]
+     * c7 = v[i + 1] = auxiliar
      * ---- Vezes de Execução ----
      * f(n) = c1 * 1 + c2*1 + c3*(n/2 + 1) + c4*n/2 + n *(c5+c6+c7)
      * f(n) = c4*n/2 + c3*n/2 + (c5+c6+c7) * n + c1 + c2 + c3
@@ -102,29 +102,29 @@ public class AnaliseAlgoritmosIterativos {
      * 
      * ANÁLISE ANALÍTICA:
      * ---- Primitivias ----
-     * c1 = int i = 0;
-     * c2 = i < palavra.length / 2;
-     * c3 = i++;
+     * c1 = int i = 0
+     * c2 = i < palavra.length / 2
+     * c3 = i++
      * c4 = palavra[i] != palavra[palavra.length - i - 1]
      * c5 = return false; === 0
-     * c6 = return true;
+     * c6 = return true
      * 
      * ---- Vezes de Execução ----
      * f(n) = c1 * 1 + c2*((n/2)+1) + c3*(n/2) + c4*n/2 + c6
      * f(n) = (c4+c3)*n/2 + c2*((n/2)+1) + c1 + c6
-     * f(n) = n/2 + n/2 + 2
-     * f(n) = n + 2
+     * f(n) = n/2 + n/2 + 1
+     * f(n) = n + 1
      * 
      * ANÁLISE ASSINTÓTICA
-     * f(n) = n + 2
+     * f(n) = n + 1
      * g(n) = n
      * c1 = 1
-     * c2 = 3
+     * c2 = 2
      * n0 = 1
      * 
      * Formalmente,
-     * c1 * n <= n + 2 <= c2 * n
-     * n <= n + 2 <= 3n
+     * c1 * n <= n + 1 <= c2 * n
+     * n <= n + 1 <= 2n
      * 
      * Ordem de crescimento linear
      */
@@ -143,7 +143,39 @@ public class AnaliseAlgoritmosIterativos {
      * target. O método deve retornar um array de duas posições contendo um par de
      * inteiros distintos cuja soma seja igual ao valor target, caso não exista um
      * par, retorna array vazio.
-     * Ordem de Cresciemnto - f(n) = n**2
+     * ANÁLISE ANALÍTICA:
+     * ---- Primitivias ----
+     * c1 = int i = 0
+     * c2 = i < v.length
+     * c3 = i++
+     * c4 = int j = i + 1
+     * c5 = j < v.length
+     * c6 = j++
+     * c7 = v[i] + v[j] == target
+     * c8 = return new int[] { v[i], v[j] }
+     * c9 = return new int[0]
+     * 
+     * ---- Vezes de Execução ----
+     * f(n) = c1 + c2*(n+1) + c3*n + n *(c4 + (c5 * n) + c6 * (n - 1) + c7 * (n-1))
+     * + c9
+     * f(n) = c2 * (n+1) + c3 * n + c4 * n + c5 * n2 + c6 * n2 - c6 * n + c7 * n2 -
+     * c7 * n + c9 + c1
+     * f(n) = c2 * (n+1) + (c3 + c4 + c6 + c7) * n + (c5 + c6 + c7) * n2 + c9 +c1
+     * f(n) = n+1+n+n2+1
+     * f(n) = n2 + 2n + 2
+     * 
+     * ANÁLISE ASSINTÓTICA
+     * f(n) = n2 + 2n + 2
+     * g(n) = n2
+     * c1 = 1
+     * c2 = 5
+     * n0 = 1
+     * 
+     * Formalmente,
+     * c1 * n2 <= n2 + 2n + 2 <= c2 * n2
+     * n2 <= n2 + 2n + 2 <= 5n2
+     * 
+     * Ordem de crescimento quadrático
      * 
      */
 
@@ -160,7 +192,33 @@ public class AnaliseAlgoritmosIterativos {
 
     /*
      * Questão 04 - Escreva um método que verifica se um número é primo ou não.
-     * Ordem de Cresciemnto - f(n) = n
+     * ANÁLISE ANALÍTICA:
+     * ---- Primitivias ----
+     * c1 = int i = 2
+     * c2 = i < n
+     * c3 = i++
+     * c4 = n % i == 0
+     * c5 = return false
+     * c6 = return true
+     * 
+     * ---- Vezes de Execução ----
+     * f(n) = c1 * 1 + c2*(n+1) + c3*n + c4 *n + c6 * 1
+     * f(n) = c2 * (n+1) + (c3 + c4)* n + c1 + c6
+     * f(n) = n+1 + n + 1
+     * f(n) = 2n + 2
+     * 
+     * ANÁLISE ASSINTÓTICA
+     * f(n) = 2n + 2
+     * g(n) = n
+     * c1 = 1
+     * c2 = 4
+     * n0 = 1
+     * 
+     * Formalmente,
+     * c1 * n <= 2n + 2 <= c2 * n
+     * n <= 2n + 2 <= 4n
+     * 
+     * Ordem de crescimento linear
      * 
      */
 
@@ -177,7 +235,41 @@ public class AnaliseAlgoritmosIterativos {
      * Questão 05- Escreva um método que receba um array de inteiros não ordenado e
      * verifica existe algum elemento repetido presente no array. Retorne true ou
      * false.
-     * Ordem de CRescimento = f(n) = n**2
+     * ANÁLISE ANALÍTICA:
+     * ---- Primitivias ----
+     * c1 = int i = 0
+     * c2 = i < v.length
+     * c3 = i++
+     * c4 = int j = i + 1
+     * c5 = j < v.length
+     * c6 = j++
+     * c7 = v[i] == v[j]
+     * c8 = return true ---- não entra no pior caso
+     * c9 = return false
+     * 
+     * ---- Vezes de Execução ----
+     * f(n) = c1 * 1 + c2*(n+1) + c3*n + n *(c4 + (c5 * n) + c6 * (n - 1) + c7 *
+     * (n-1))
+     * + c9
+     * f(n) = c2 * (n+1) + c3 * n + c4 * n + c5 * n2 + c6 * n2 - c6 * n + c7 * n2 -
+     * c7 * n + c9 + c1
+     * f(n) = c2 * (n+1) + (c3 + c4 + c6 + c7) * n + (c5 + c6 + c7) * n2 + c9 +c1
+     * f(n) = n+1+n+n2+1
+     * f(n) = n2 + 2n + 2
+     * 
+     * ANÁLISE ASSINTÓTICA
+     * f(n) = n2 + 2n + 2
+     * g(n) = n2
+     * c1 = 1
+     * c2 = 5
+     * n0 = 1
+     * 
+     * Formalmente,
+     * c1 * n2 <= n2 + 2n + 2 <= c2 * n2
+     * n2 <= n2 + 2n + 2 <= 5n2
+     * 
+     * Ordem de crescimento quadrático
+     * 
      */
 
     public static boolean tem_repetido(int[] v) {
