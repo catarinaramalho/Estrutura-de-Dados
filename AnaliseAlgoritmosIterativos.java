@@ -111,20 +111,20 @@ public class AnaliseAlgoritmosIterativos {
      * 
      * ---- Vezes de Execução ----
      * f(n) = c1 * 1 + c2*((n/2)+1) + c3*(n/2) + c4*n/2 + c6
-     * f(n) = (c4+c3)*n/2 + c2*((n/2)+1) + c1 + c6
+     * f(n) = (c4+c3+c2)*n/2 + c1 + c6 + c2
      * f(n) = n/2 + n/2 + 1
      * f(n) = n + 1
      * 
      * ANÁLISE ASSINTÓTICA
-     * f(n) = n + 1
+     * f(n) = n/2 + 1
      * g(n) = n
      * c1 = 1
      * c2 = 2
      * n0 = 1
      * 
      * Formalmente,
-     * c1 * n <= n + 1 <= c2 * n
-     * n <= n + 1 <= 2n
+     * c1 * n <= n/2 + 1 <= c2 * n
+     * n <= n/2 + 1 <= 2n
      * 
      * Ordem de crescimento linear
      */
