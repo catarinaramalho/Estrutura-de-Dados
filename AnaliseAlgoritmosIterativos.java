@@ -288,7 +288,45 @@ public class AnaliseAlgoritmosIterativos {
      * retorne uma String que representa a impressão do array de forma circular. Ou
      * seja, quando o último elemento for visitado ele deve voltar para o primeiro e
      * continuar até chegar a N elementos impressos.
-     * Ordem de crescimento = f(n) = n**2
+     * ANÁLISE ANALÍTICA:
+     * ---- Primitivias ----
+     * c1 = String out = "";
+     * c2 = int quociente = quantidadeElementos / array.length;
+     * c3 = int resto = quantidadeElementos % array.length;
+     * c4 = int i = 0
+     * c5 = i < quociente
+     * c6 = i++
+     * c7 = int j = 0
+     * c8 = j < array.length
+     * c9 = j++
+     * c10 = out += array[j] + " ";
+     * c11 = int a = 0
+     * c12 = a < resto
+     * c13 = a ++
+     * c14 = out += array[a] + " ";
+     * c15 = return out.trim();
+     * 
+     * ---- Vezes de Execução ----
+     * f(n) = c1 * 1 + c2*1+ c3*1 + c4 * 1 + c5 * (n+1) + c6 * (n) + n * (c7 + c8*(m+1)+c9*m+c10*m) + c11*1 + c12 * (k+1) + c13 * k +c14 * k + c15 
+     * f(n) = (c1 + c2 + c3 + c4 + c11 + c15) + c5 * (n+1) + (c6+c7) * n + c8*m*n + c8*n + (c8 + c9+c10)*(m*n) + c12* (k+1)  + (c12 + c13 + c14)*k  
+     * f(n) = (c1 + c2 + c3 + c4 + c11 + c15) + c5 * (n+1) + (c6+c7) * n + (c8)*n+ (c8 + c9+c10)*(m*n) + c12* (k+1)  + (c12 + c13 + c14)*k
+     * f(n) = 1 + n+1 + n + n + mn + k
+     * f(n) = 3n + mn + 2 + k
+     * 
+     * ANÁLISE ASSINTÓTICA
+     * f(n) = 3n + mn + 2 + k
+     * g(n) = n
+     * c1 = 1
+     * c2 = 7
+     * n0 = 1
+     * m0 = 1
+     * k0 = 1
+     * 
+     * Formalmente,
+     * c1 * n * m * k <= 3n + mn + 2 + k <= c2 * n * m * k
+     * nmk <=  3n + mn + 2 + k<= 7nmk
+     * 
+     * Ordem de crescimento linear
      * 
      */
     public static String vetorCircular(int[] array, int quantidadeElementos) {
